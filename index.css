@@ -6,10 +6,9 @@ body{
   font-family: 'Pacifico', cursive;
   color: white;
 }
-
 main{
-  height: 100vh;
-  width: 100vw;
+  min-height: calc(100vh - 120px);
+  width: 100%;
   background: rgb(1,0,85);
   background: linear-gradient(180deg, rgba(1,0,85,1) 15%, rgba(163,0,88,1) 100%);
   position: relative;
@@ -17,7 +16,6 @@ main{
   flex-direction: column;
   float: left;
 }
-
 .main-header{
   background-color: black;
   height: 100px;
@@ -32,7 +30,6 @@ main{
   font-size: 2em;
   width: 100%;
 }
-
 .container{
   height: 100%;
   justify-content: center;
@@ -48,8 +45,8 @@ main{
   position: absolute;
   display: flex;
   flex-direction: column;
-  -webkit-backdrop-filter: brightness(60%);
   backdrop-filter: brightness(60%);
+  -webkit-backdrop-filter: brightness(60%);
 }
 .modal{
   display: inherit;
@@ -70,8 +67,19 @@ main{
   color: white;
 }
 .modal input[type="text"]{
+  font-family: 'Itim', cursive;  
+  font-size: 1.2em;
+  background-color: #a30058;
+  border: none;
+  border-radius: 5px;
+  color: white;
   outline: none;
+  padding: 5px;
   margin: 0 0 10px 0;
+}
+.modal input[type="text"]::placeholder{
+  color: white;
+  opacity: 0.5;
 }
 .radio-box{
     display: block;
@@ -106,7 +114,6 @@ main{
 #decline:active{
   transform: translate(0, 2px);
 }
-
 #add-task:hover,
 #accept:hover{
   background-color: #70003d;
@@ -114,7 +121,6 @@ main{
 #decline:hover{
   background-color: #a30058;
 }
-
 .task-list{
   margin: 20px;
   display: flex;
@@ -124,29 +130,26 @@ main{
 .task-div{
   display: flex;
   flex-direction: column;
-  max-width: 200px;
-  max-height: 500px;
+  width: 20%;
+  height: fit-content;
   padding: 10px;
   margin: 10px;
   background-color: rgb(255, 255, 255);
   color: black;
   border-radius: 10px;
 }
-
 .type-badge-div{
   background-color: #a30058;
   padding: 10px;
   border-radius: 10px;
   float: left;
 }
-
 .task-text-div{
   padding: 10px 0 0 5px ;
 }
 .task-text-div p{
   font-family: 'Itim', cursive;  
   font-size: 1.2em;
-  word-break: break-all;
   margin: 0;
 }
 .type-badge-div p{
@@ -156,10 +159,11 @@ main{
   color: white;
   text-transform: capitalize;
 }
-
 .delete-task-btn{
-  padding: 5px;
-  margin: 0 0 0 20px;
+  height: 15px;
+  width: 15px;
+  padding: 0;
+  margin: 5px 5px 5px 25px;
   background: transparent;
   outline: none;
   cursor: pointer;
@@ -171,7 +175,6 @@ main{
   -o-transition: all .1s ease-in-out;
 
 }
-
 .delete-task-btn:active{
   transform: scale(1.25);
 }
