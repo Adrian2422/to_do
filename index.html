@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>To-do</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png"/>
+  </head>
+
+  <body>
+    <script src="app.js" defer></script>
+    <main>
+      <header class="main-header">
+        <h2>TO-DO</h2>
+        <button id="add-task">+ Add task</button>
+      </header>
+      <div id="backdrop" class="modal-backdrop-off">
+        <div class="modal">
+          <label for="task-text">Task:</label>
+          <input type="text" id="task-text" placeholder="Input a task" />
+          <label for="radio-box">Task type</label>
+          <div class="radio-box">
+            <input type="radio" name="task-type" value="general" checked />
+            <label for="home">General</label>
+            <input type="radio" name="task-type" value="home" />
+            <label for="home">Home</label>
+            <input type="radio" name="task-type" value="school" />
+            <label for="school">School</label>
+            <input type="radio" name="task-type" value="work" />
+            <label for="work">Work</label>
+          </div>
+          <div class="button-box">
+            <button class="modal-button" id="decline">Cancel</button>
+            <button class="modal-button" id="accept">OK</button>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="task-list"></div>
+      </div>
+    </main>
+  </body>
+</html>
