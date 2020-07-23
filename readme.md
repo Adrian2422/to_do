@@ -9,4 +9,4 @@
 </ul>
 
 <p>Live: </p>
-<a href="https://adrian2422.github.io/to_do/"></a>
+https://adrian2422.github.io/to_do/
