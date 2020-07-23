@@ -18,9 +18,20 @@
     <script src="app.js" defer></script>
     <header class="main-header">
       <h2>TO-DO</h2>
+      <input type="search" class="search">
+      <button class="search-btn">
+        <img src="assets/search_icon.png" height="18px" width="18px"></img>
+      </button>
       <button id="add-task">+ Add task</button>
     </header>
     <main>
+      <!-- mobile filter -->
+      <div class="filter-list-off" id=filter-list>
+        <input type="search" class="filter-search" placeholder="Enter phrase">
+        <button class="filter-search-btn">Apply</button>
+      </div>
+      <a href="#filter-list" class="filter"><span>↓Filter↓</span></a>
+      <!-- mobile filter -->
       <div id="backdrop" class="modal-backdrop-off">
         <div class="modal">
           <label for="task-text">Task:</label>
@@ -43,7 +54,9 @@
         </div>
       </div>
       <div class="container">
-        <div class="task-list"></div>
+        <div class="task-list">
+
+        </div>
       </div>
     </main>
   </body>

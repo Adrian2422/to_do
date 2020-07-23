@@ -1,12 +1,17 @@
 // global variables
 const TASK_ARRAY = [];
+const FILTERED_TASKS = [];
 
-// queries
+// DESKTOP SCRIPTS
+
+//queries
 const startAddTask = document.querySelector('#add-task');
 const acceptAddTask = document.querySelector('#accept');
 const declineAddTask = document.querySelector('#decline');
 const backdrop = document.querySelector('#backdrop');
 const taskList = document.querySelector('.task-list');
+const search = document.querySelector('.search');
+const searchBtn = document.querySelector('.search-btn');
 
 // functions
 const createTaskDiv = (text, type) => {
@@ -47,6 +52,12 @@ const generateId = () => {
   }
   return id.join('');
 }
+const searchHandler = () => {
+  TASK_ARRAY.forEach(item => {
+    console.log(item.taskText);
+    console.log(item.taskType);
+  })
+}
 // listeners
 startAddTask.addEventListener('click', () => {
   backdrop.classList = "";
@@ -70,3 +81,31 @@ acceptAddTask.addEventListener('click', () => {
     backdrop.classList.toggle('modal-backdrop-off');
   }
 })
+searchBtn.addEventListener('click', searchHandler);
+
+// MOBILE SCRIPTS
+
+//queries
+const filter = document.querySelector('.filter');
+const mobileSearchBtn = document.querySelector('.filter-search-btn');
+
+
+// functions
+
+
+// listeners
+filter.addEventListener('click', () => {
+  const filterList = document.querySelector('.filter-list-off');
+  if(filterList.classList.contains('filter-list-off')){
+    filterList.classList.toggle('filter-list-on');
+  } else if(filterList.classList.contains('filter-list-on')){
+    filterList.classList.toggle('filter-list-on');
+  }
+  if(filterList.classList.contains('filter-list-on')){
+    filter.innerHTML = '<span>↑Filter↑</span>';
+  } else {
+    filter.innerHTML = '<span>↓Filter↓</span>';
+  }
+})
+mobileSearchBtn.addEventListener('click', searchHandler);
+
