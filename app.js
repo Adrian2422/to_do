@@ -47,6 +47,7 @@ const createTaskDiv = (id, text, type) => {
   deleteBtn.addEventListener('click', (e) => {
     const task = e.target.closest('.task-div');
     task.classList.toggle('task-div-deleted');
+    e.target.disabled = true;
     setTimeout(() => {
       deleteTaskDiv(e);
     }, 500);
@@ -62,6 +63,7 @@ const deleteTaskDiv = (element) => {
 }
 const doneTaskDiv = (element) => {
   const task = element.target.closest('.task-div');
+  task.classList.toggle('task-div-checked');
   const taskId = task.id;
   const taskType = task.children[0].innerText;
   const taskText = task.children[1].innerText;

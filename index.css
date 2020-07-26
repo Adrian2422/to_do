@@ -197,19 +197,31 @@ main{
   flex-direction: row;
   flex-wrap: wrap;
 }
+@keyframes popUp {
+  0% {transform: scale(0.01);}
+  100% {transform: scale(1);}
+}
 .task-div{
   display: flex;
   flex-direction: column;
-  width: 20%;
   height: fit-content;
+  width: 20%;
   padding: 10px;
   margin: 10px;
   background-color: rgb(255, 255, 255);
   color: black;
   border-radius: 10px;
-  transition: transform .5s cubic-bezier(0.24,-0.28, 1, 0.24);
+  animation: popUp .2s 1;
+  transition: height .2s ease-in, width .2s ease-in;
+  transition: transform .5s cubic-bezier(0.24,-0.28, 1, 0.24), background-color .2s, color .2s;
+}
+.task-div-checked{
+  background-color: rgb(0, 155, 67);
+  color: white;
 }
 .task-div-deleted{
+  background-color: rgb(255, 40, 40);
+  color: white;
   transform: scale(0);
 }
 .type-badge-div{
@@ -240,7 +252,6 @@ main{
   display: flex;
   flex-direction: row;
 }
-
 .task-btn{
   height: 100%;
   width: 50%;
@@ -248,7 +259,7 @@ main{
   margin: 0 5px;
   outline: none;
   cursor: pointer;
-  background-color: transparent;
+  background-color: white;
   border: 1px solid black;
   border-radius: 8px;
   transition: transform .1s ease-in-out;
