@@ -18,32 +18,45 @@
     <script src="app.js" defer></script>
     <header class="main-header">
       <h2>TO-DO</h2>
+      <input type="search" class="search">
+      <button class="search-btn">
+        <img src="assets/search_icon.png" height="18px" width="18px"></img>
+      </button>
       <button id="add-task">+ Add task</button>
     </header>
     <main>
+      <!-- mobile filter -->
+      <div class="filter-list-off" id=filter-list>
+        <input type="search" class="filter-search" placeholder="Enter phrase">
+        <button class="filter-search-btn">Apply</button>
+      </div>
+      <a href="#filter-list" class="filter"><span>↓Filter↓</span></a>
+      <!-- mobile filter -->
       <div id="backdrop" class="modal-backdrop-off">
         <div class="modal">
           <label for="task-text">Task:</label>
           <input type="text" id="task-text" placeholder="Input a task" />
           <label for="radio-box">Task type</label>
           <div class="radio-box">
-            <input type="radio" name="task-type" value="general" checked />
+            <input type="radio" name="task-type" value="General" checked />
             <label for="home">General</label>
-            <input type="radio" name="task-type" value="home" />
+            <input type="radio" name="task-type" value="Home" />
             <label for="home">Home</label>
-            <input type="radio" name="task-type" value="school" />
+            <input type="radio" name="task-type" value="School" />
             <label for="school">School</label>
-            <input type="radio" name="task-type" value="work" />
+            <input type="radio" name="task-type" value="Work" />
             <label for="work">Work</label>
           </div>
-          <div class="button-box">
+          <div class="modal-button-box">
             <button class="modal-button" id="decline">Cancel</button>
             <button class="modal-button" id="accept">OK</button>
           </div>
         </div>
       </div>
       <div class="container">
-        <div class="task-list"></div>
+        <div class="task-list">
+
+        </div>
       </div>
     </main>
   </body>

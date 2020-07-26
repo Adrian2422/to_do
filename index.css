@@ -6,16 +6,6 @@ body{
   font-family: 'Pacifico', cursive;
   color: white;
 }
-main{
-  min-height: calc(100vh - 120px);
-  width: 100%;
-  background: rgb(1,0,85);
-  background: linear-gradient(180deg, rgba(1,0,85,1) 15%, rgba(163,0,88,1) 100%);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  float: left;
-}
 .main-header{
   background-color: black;
   height: 100px;
@@ -29,6 +19,86 @@ main{
 .main-header h2{
   font-size: 2em;
   width: 100%;
+}
+main{
+  min-height: calc(100vh - 120px);
+  width: 100%;
+  background: rgb(1,0,85);
+  background: linear-gradient(180deg, rgba(1,0,85,1) 15%, rgba(163,0,88,1) 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  float: left;
+}
+.filter{
+  display: none;
+  height: 30px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #a30058;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  text-align: center;
+  justify-content: center;
+  font-family: 'Itim', cursive;
+  font-size: 1.2em;
+  color: white;
+}
+.filter-list-off{
+  display: none;
+}
+.search{
+  background-color: #a30058;
+  font-family: 'Itim', cursive;
+  margin: 0;
+  padding: 0 5px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 3px 0 0 3px;
+  color: white;
+  outline: none;
+}
+.search::-webkit-search-cancel-button{
+  -webkit-appearance: none;
+  height: 10px;
+  width: 10px;
+  background-image: url(/assets/cancel.png);
+  background-repeat: no-repeat;
+  background-size: 10px;
+  cursor: pointer;
+}
+.search-btn{
+  background-color: #a30058;
+  padding: 0px;
+  width: 23px;
+  height: 23px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0 3px 3px 0 ;
+  border-left: 1px solid rgba(128, 128, 128, 0.5);
+  outline: none;
+  color: white;
+  margin-right: 10px;
+  position: relative;
+  transition: background-color .3s ease-in-out, transform .1s;
+  -moz-transition: background-color .3s ease-in-out, transform .1s;
+  -webkit-transition: background-color .3s ease-in-out, transform .1s;
+  -o-transition: background-color .3s ease-in-out, transform .1s;
+}
+.search-btn img{
+  padding: 3px;
+  transition: transform .3s;
+  -moz-transition: transform .3s;
+  -webkit-transition: transform .3s;
+  -o-transition: transform .3s;
+}
+.search-btn:hover{
+  background-color: #70003d;
+}
+.search-btn img:active{
+  transform: rotate(360deg);
 }
 .container{
   height: 100%;
@@ -67,7 +137,7 @@ main{
   color: white;
 }
 .modal input[type="text"]{
-  font-family: 'Itim', cursive;  
+  font-family: 'Itim', cursive;
   font-size: 1.2em;
   background-color: #a30058;
   border: none;
@@ -84,7 +154,7 @@ main{
 .radio-box{
     display: block;
 }
-.button-box{
+.modal-button-box{
   text-align: right;
 }
 #add-task,
@@ -137,18 +207,24 @@ main{
   background-color: rgb(255, 255, 255);
   color: black;
   border-radius: 10px;
+  transition: transform .5s cubic-bezier(0.24,-0.28, 1, 0.24);
+}
+.task-div-deleted{
+  transform: scale(0);
 }
 .type-badge-div{
   background-color: #a30058;
+  width: fit-content;
   padding: 10px;
   border-radius: 10px;
   float: left;
 }
 .task-text-div{
-  padding: 10px 0 0 5px ;
+  padding: 10px 5px;
 }
 .task-text-div p{
-  font-family: 'Itim', cursive;  
+  font-family: 'Itim', cursive;
+  word-wrap: break-word;
   font-size: 1.2em;
   margin: 0;
 }
@@ -159,25 +235,119 @@ main{
   color: white;
   text-transform: capitalize;
 }
-.delete-task-btn{
-  height: 15px;
-  width: 15px;
+.task-button-box{
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+}
+
+.task-btn{
+  height: 100%;
+  width: 50%;
   padding: 0;
-  margin: 5px 5px 5px 25px;
-  background: transparent;
+  margin: 0 5px;
   outline: none;
   cursor: pointer;
-  border: none;
-  float: right;
-  transition: all .1s ease-in-out;
-  -moz-transition: all .1s ease-in-out;
-  -webkit-transition: all .1s ease-in-out;
-  -o-transition: all .1s ease-in-out;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 8px;
+  transition: transform .1s ease-in-out;
+  -moz-transition: transform .1s ease-in-out;
+  -webkit-transition: transform .1s ease-in-out;
+  -o-transition: transform .1s ease-in-out;
+}
+.done-task-btn{
+  background-image: url('assets/checked_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.delete-task-btn{
+  background-image: url('assets/delete_bin_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.task-btn:active{
+  transform: scale(1.1);
+}
 
-}
-.delete-task-btn:active{
-  transform: scale(1.25);
-}
-.task-topbar{
-  width: 100%;
-}
+@media only screen
+    and (min-width: 300px)
+    and (max-width: 730px){
+      .modal label{
+        width: fit-content;
+      }
+      .radio-box{
+        display: grid;
+        grid-template-columns: 25px auto;
+      }
+      .task-div{
+        width: fit-content;
+      }
+      .search{
+        display: none;
+      }
+      .search-btn{
+        display: none;
+      }
+      .filter{
+        display: inline-block;
+        text-decoration: none;
+        padding: 2px 0;
+        height: 100%;
+        width: 100%;
+      }
+      .filter-list-off{
+        display: flex;
+        flex-direction: column;
+        background-color: #70003d;
+        overflow: hidden;
+        line-height: 100px;
+        height: 0;
+        transition: all .5s ease-in-out;
+      }
+      .filter-list-on{
+        height: 51px;
+        padding: 5px;
+      }
+      .filter-search{
+        font-family: 'Itim', cursive;
+        background-color: #a30058;
+        font-family: 'Itim', cursive;
+        font-size: 1.2em;
+        color: white;
+        outline: none;
+        margin: 0;
+        padding: 0 5px;
+        border: none;
+        border-radius: 3px;
+      }
+      .filter-search-btn{
+        font-family: 'Itim', cursive;
+        font-size: 1.2em;
+        color: white;
+        background-color: #a30058;
+        padding: 0px;
+        width: auto;
+        height: auto;
+        border: none;
+        cursor: pointer;
+        border-radius: 3px;
+        outline: none;
+        margin-top: 5px;
+        position: relative;
+        transition: all .1s ease-in-out;
+        -moz-transition: all .1s ease-in-out;
+        -webkit-transition: all .1s ease-in-out;
+        -o-transition: all .1s ease-in-out;
+      }
+      input[type="search"]::placeholder{
+        text-align: center;
+        color: white;
+        opacity: 0.5;
+      }
+      .filter-search-btn:active{
+        transform: scale(.9);
+      }
+    }
