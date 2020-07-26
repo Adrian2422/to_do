@@ -1,6 +1,6 @@
 // global variables
 const TASK_ARRAY = {};
-const TRASHED_TASKS = {};
+const TRASHED_TASKS = [];
 const DONE_TASKS = {};
 
 // DESKTOP SCRIPTS
@@ -11,11 +11,12 @@ const acceptAddTask = document.querySelector('#accept');
 const declineAddTask = document.querySelector('#decline');
 const backdrop = document.querySelector('#backdrop');
 const taskList = document.querySelector('.task-list');
+const undeleteBtn = document.querySelector('.undelete-btn-invisible');
 const search = document.querySelector('.search');
 const searchBtn = document.querySelector('.search-btn');
 
 // functions
-const createTaskDiv = (id, text, type) => {
+const createTaskDiv = (id, type, text) => {
   const taskDiv = document.createElement('div');
   const textDiv = document.createElement('div');
   const taskText = document.createElement('p');
@@ -58,8 +59,11 @@ const deleteTaskDiv = (element) => {
   const taskId = task.id;
   const taskType = task.children[0].innerText;
   const taskText = task.children[1].innerText;
-  TRASHED_TASKS[`${taskId}`] = {taskType, taskText};
+  TRASHED_TASKS.unshift({taskId, taskType, taskText});
   task.remove();
+  if(TRASHED_TASKS.length){
+    undeleteBtn.classList.add('undelete-btn-visible');
+  }
 }
 const doneTaskDiv = (element) => {
   const task = element.target.closest('.task-div');
@@ -68,6 +72,14 @@ const doneTaskDiv = (element) => {
   const taskType = task.children[0].innerText;
   const taskText = task.children[1].innerText;
   DONE_TASKS[`${taskId}`] = {taskType, taskText};
+}
+const undeleteTaskDiv = () => {
+  const {taskId, taskType, taskText} =  TRASHED_TASKS[0];
+  createTaskDiv(taskId, taskType, taskText);
+  TRASHED_TASKS.shift();
+  if(!TRASHED_TASKS.length){
+    undeleteBtn.classList.remove('undelete-btn-visible');
+  }
 }
 //const doneTaskDiv = () => {}
 const generateId = (type) => {
@@ -84,10 +96,10 @@ const generateId = (type) => {
   return id.join('');
 }
 const searchHandler = () => {
-  TASK_ARRAY.forEach(item => {
+  /* TASK_ARRAY.forEach(item => {
     console.log(item.taskText);
     console.log(item.taskType);
-  })
+  }) */
 }
 // listeners
 startAddTask.addEventListener('click', () => {
@@ -96,7 +108,7 @@ startAddTask.addEventListener('click', () => {
 })
 declineAddTask.addEventListener('click', () => {
   document.querySelector('#task-text').value = '';
-  document.querySelector('input[name="task-type"][value="general"]').checked = true;
+  document.querySelector('input[name="task-type"][value="General"]').checked = true;
   backdrop.classList = "";
   backdrop.classList.toggle('modal-backdrop-off');
 })
@@ -105,7 +117,7 @@ acceptAddTask.addEventListener('click', () => {
   const taskText = document.querySelector('#task-text').value;
   const taskType = document.querySelector('input[name="task-type"]:checked').value;
   if(taskText){
-    createTaskDiv(taskId, taskText, taskType);
+    createTaskDiv(taskId, taskType, taskText);
     TASK_ARRAY[`${taskId}`] = {taskType, taskText};
     document.querySelector('#task-text').value = '';
     document.querySelector('input[name="task-type"][value="General"]').checked = true;
@@ -114,6 +126,7 @@ acceptAddTask.addEventListener('click', () => {
   }
 })
 searchBtn.addEventListener('click', searchHandler);
+undeleteBtn.addEventListener('click', undeleteTaskDiv);
 
 // MOBILE SCRIPTS
 

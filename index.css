@@ -49,6 +49,29 @@ main{
 .filter-list-off{
   display: none;
 }
+.undelete-btn-invisible{
+  display: none;
+}
+.undelete-btn-visible{
+  display: inline-block;
+  background-color: #a30058;
+  background-image: url(/assets/undelete_icon.png);
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 50px;
+  width: 100px;
+  padding: 0;
+  margin-right: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color .3s ease-in-out, transform .1s;
+  -moz-transition: background-color .3s ease-in-out, transform .1s;
+  -webkit-transition: background-color .3s ease-in-out, transform .1s;
+  -o-transition: background-color .3s ease-in-out, transform .1s;
+}
 .search{
   background-color: #a30058;
   font-family: 'Itim', cursive;
@@ -71,9 +94,13 @@ main{
 }
 .search-btn{
   background-color: #a30058;
+  background-image: url(/assets/search_icon.png);
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: center;
   padding: 0px;
-  width: 23px;
   height: 23px;
+  width: 40px;
   border: none;
   cursor: pointer;
   border-radius: 0 3px 3px 0 ;
@@ -87,18 +114,13 @@ main{
   -webkit-transition: background-color .3s ease-in-out, transform .1s;
   -o-transition: background-color .3s ease-in-out, transform .1s;
 }
-.search-btn img{
-  padding: 3px;
-  transition: transform .3s;
-  -moz-transition: transform .3s;
-  -webkit-transition: transform .3s;
-  -o-transition: transform .3s;
-}
-.search-btn:hover{
+.search-btn:hover,
+.undelete-btn-visible{
   background-color: #70003d;
 }
-.search-btn img:active{
-  transform: rotate(360deg);
+.search-btn:active,
+.undelete-btn-visible:active{
+  transform: scale(0.9);
 }
 .container{
   height: 100%;
@@ -211,7 +233,7 @@ main{
   background-color: rgb(255, 255, 255);
   color: black;
   border-radius: 10px;
-  animation: popUp .2s 1;
+  animation: popUp .2s;
   transition: height .2s ease-in, width .2s ease-in;
   transition: transform .5s cubic-bezier(0.24,-0.28, 1, 0.24), background-color .2s, color .2s;
 }
