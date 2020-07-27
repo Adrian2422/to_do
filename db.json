@@ -1,5 +1,22 @@
 {
   "tasks": [
-   
+    {
+      "id": "1",
+      "task_id": "task-div_3j3qlbii",
+      "task_type": "General",
+      "task_text": "To jest pierwsze zadanie z json"
+    },
+    {
+      "id": "2",
+      "task_id": "task-div_aj3q34gi",
+      "task_type": "Home",
+      "task_text": "To jest drugie zadanie z json"
+    },
+    {
+      "id": "3",
+      "task_id": "task-div_gj2qobh0",
+      "task_type": "School",
+      "task_text": "To jest trzecie zadanie z json"
+    }
   ]
 }
