@@ -127,6 +127,22 @@ acceptAddTask.addEventListener('click', () => {
 searchBtn.addEventListener('click', searchHandler);
 undeleteBtn.addEventListener('click', undeleteTaskDiv);
 
+// XML Requests 
+const xhr = new XMLHttpRequest();
+
+xhr.open('GET', 'https://my-json-server.typicode.com/Adrian2422/to_do/tasks');
+
+xhr.responseType = 'json';
+
+xhr.onload = function() {
+  const listOfTasks = xhr.response;
+  listOfTasks.forEach(item => {
+    const {task_id, task_type, task_text} = item;
+    createTaskDiv(task_id, task_type, task_text)
+  })
+};
+
+xhr.send();
 // MOBILE SCRIPTS
 
 //queries
