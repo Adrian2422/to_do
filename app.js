@@ -43,7 +43,7 @@ const createTaskDiv = (id, type, text) => {
   taskDiv.appendChild(btnBox);
   taskList.appendChild(taskDiv);
   doneBtn.addEventListener('click', (e) => {
-    doneTaskDiv(e);
+    checkTaskDiv(e);
   })
   deleteBtn.addEventListener('click', (e) => {
     const task = e.target.closest('.task-div');
@@ -65,7 +65,7 @@ const deleteTaskDiv = (element) => {
     undeleteBtn.classList.add('undelete-btn-visible');
   }
 }
-const doneTaskDiv = (element) => {
+const checkTaskDiv = (element) => {
   const task = element.target.closest('.task-div');
   task.classList.toggle('task-div-checked');
   const taskId = task.id;
@@ -81,7 +81,6 @@ const undeleteTaskDiv = () => {
     undeleteBtn.classList.remove('undelete-btn-visible');
   }
 }
-//const doneTaskDiv = () => {}
 const generateId = (type) => {
   const chars = 'abcdefghijklmnopqrstuvwxyz1234567890'.split('');
   const id = [];
