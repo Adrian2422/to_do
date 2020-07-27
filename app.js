@@ -60,6 +60,10 @@ const deleteTaskDiv = (element) => {
   const taskType = task.children[0].innerText;
   const taskText = task.children[1].innerText;
   TRASHED_TASKS.unshift({ taskId, taskType, taskText });
+  sendHttpRequest(
+    "DELETE",
+    `https://my-json-server.typicode.com/Adrian2422/to_do/tasks/${taskId}`
+  );
   task.remove();
   if (TRASHED_TASKS.length) {
     undeleteBtn.classList.add("undelete-btn-visible");
@@ -76,6 +80,7 @@ const checkTaskDiv = (element) => {
 const undeleteTaskDiv = () => {
   const { taskId, taskType, taskText } = TRASHED_TASKS[0];
   createTaskDiv(taskId, taskType, taskText);
+  postTask(taskId, taskType, taskText)
   TRASHED_TASKS.shift();
   if (!TRASHED_TASKS.length) {
     undeleteBtn.classList.remove("undelete-btn-visible");
@@ -156,14 +161,13 @@ async function fetchTasks() {
   );
   const listOfTasks = responseData;
   listOfTasks.forEach((item) => {
-    const { task_id, task_type, task_text } = item;
-    createTaskDiv(task_id, task_type, task_text);
+    const { id, task_type, task_text } = item;
+    createTaskDiv(id, task_type, task_text);
   });
 }
 async function postTask(taskId, taskType, taskText) {
   const task = {
-    id: Math.random(),
-    taskId,
+    id: taskId,
     taskType,
     taskText,
   };
