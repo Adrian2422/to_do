@@ -243,6 +243,18 @@ main{
   flex-direction: row;
   flex-wrap: wrap;
 }
+.task-list-filtered{
+  height: 0;
+  transition: all .5s ease-in-out;
+}
+.task-list-filtered-visible{
+  height: fit-content;
+  background-color: #010055;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 @keyframes popUp {
   0% {transform: scale(0.01);}
   100% {transform: scale(1);}

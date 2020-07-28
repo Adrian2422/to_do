@@ -1,5 +1,6 @@
 // global variables
-const TASK_ARRAY = {};
+const TASK_ARRAY = [];
+const FILTER_ARRAY = [];
 const TRASHED_TASKS = [];
 const DONE_TASKS = {};
 
@@ -16,7 +17,7 @@ const search = document.querySelector(".search");
 const searchBtn = document.querySelector(".search-btn");
 
 // functions
-const createTaskDiv = (id, type, text) => {
+const createTaskDiv = (target, id, type, text) => {
   const taskDiv = document.createElement("div");
   const textDiv = document.createElement("div");
   const taskText = document.createElement("p");
@@ -41,7 +42,7 @@ const createTaskDiv = (id, type, text) => {
   btnBox.appendChild(doneBtn);
   btnBox.appendChild(deleteBtn);
   taskDiv.appendChild(btnBox);
-  taskList.appendChild(taskDiv);
+  target.appendChild(taskDiv);
   doneBtn.addEventListener("click", (e) => {
     checkTaskDiv(e);
   });
@@ -78,8 +79,10 @@ const checkTaskDiv = (element) => {
   DONE_TASKS[`${taskId}`] = { taskType, taskText };
 };
 const undeleteTaskDiv = () => {
+  const target = document.querySelector('.task-list');
   const { taskId, taskType, taskText } = TRASHED_TASKS[0];
-  createTaskDiv(taskId, taskType, taskText);
+  createTaskDiv(target, taskId, taskType, taskText);
+  TASK_ARRAY[`${taskId}`] = { taskType, taskText };
   postTask(taskId, taskType, taskText)
   TRASHED_TASKS.shift();
   if (!TRASHED_TASKS.length) {
@@ -99,11 +102,26 @@ const generateId = (type) => {
   }
   return id.join("");
 };
-const searchHandler = () => {
-  /* TASK_ARRAY.forEach(item => {
-    console.log(item.taskText);
-    console.log(item.taskType);
-  }) */
+const searchHandler = async () => {
+  const target = document.querySelector('.task-list-filtered');
+  const phrase = search.value;
+  const responseData = await sendHttpRequest(
+    "GET",
+    "https://my-json-server.typicode.com/Adrian2422/to_do/tasks"
+  );
+  const listOfTasks = responseData;
+  FILTER_ARRAY.splice(0)
+  target.innerHTML = '';
+    listOfTasks.forEach((item) => {
+      const { id, task_type, task_text } = item;
+      if (task_text.match(phrase) && !FILTER_ARRAY.some(element => {
+        return element[0] === `${id}`;
+      })){
+        console.log(item);
+        FILTER_ARRAY.push([id, task_type, task_text]);
+        createTaskDiv(target, id, task_type, task_text);
+      }
+    });
 };
 // listeners
 startAddTask.addEventListener("click", () => {
@@ -123,8 +141,9 @@ acceptAddTask.addEventListener("click", () => {
   const taskText = document.querySelector("#task-text").value;
   const taskType = document.querySelector('input[name="task-type"]:checked')
     .value;
+    const target = document.querySelector('.task-list');
   if (taskText) {
-    createTaskDiv(taskId, taskType, taskText);
+    createTaskDiv(target, taskId, taskType, taskText);
     postTask(taskId, taskType, taskText);
     TASK_ARRAY[`${taskId}`] = { taskType, taskText };
     document.querySelector("#task-text").value = "";
@@ -135,7 +154,11 @@ acceptAddTask.addEventListener("click", () => {
     backdrop.classList.toggle("modal-backdrop-off");
   }
 });
-searchBtn.addEventListener("click", searchHandler);
+searchBtn.addEventListener("click", () => {
+  const filteredTasks = document.querySelector('.task-list-filtered');
+  filteredTasks.classList.add('task-list-filtered-visible');
+  searchHandler();
+});
 undeleteBtn.addEventListener("click", undeleteTaskDiv);
 
 // XML Requests
@@ -154,7 +177,7 @@ const sendHttpRequest = (method, url, data) => {
   });
   return promise;
 };
-async function fetchTasks() {
+const fetchTasks = async () => {
   const responseData = await sendHttpRequest(
     "GET",
     "https://my-json-server.typicode.com/Adrian2422/to_do/tasks"
@@ -162,7 +185,9 @@ async function fetchTasks() {
   const listOfTasks = responseData;
   listOfTasks.forEach((item) => {
     const { id, task_type, task_text } = item;
-    createTaskDiv(id, task_type, task_text);
+    const target = document.querySelector('.task-list');
+    createTaskDiv(target, id, task_type, task_text);
+    TASK_ARRAY[`${id}`] = { task_type, task_text };
   });
 }
 async function postTask(taskId, taskType, taskText) {
