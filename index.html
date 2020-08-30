@@ -6,7 +6,7 @@
     <title>To-do</title>
     <meta name="description" content="To-do list" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="./css/index.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Itim&family=Pacifico&display=swap"
       rel="stylesheet"
@@ -21,9 +21,9 @@
       <button class="undelete-btn-invisible"></button>
       <input type="search" class="search">
       <button class="search-btn"></button>
-      <button id="add-task">+ Add task</button>
+      <button class='add-task' id="add-task">+ Add task</button>
     </header>
-    <main>
+    <main class='main'>
       <!-- mobile filter -->
       <div class="filter-list-off" id=filter-list>
         <input type="search" class="filter-search" placeholder="Enter phrase">
@@ -47,14 +47,13 @@
             <label for="work">Work</label>
           </div>
           <div class="modal-button-box">
-            <button class="modal-button" id="decline">Cancel</button>
-            <button class="modal-button" id="accept">OK</button>
+            <button class="modal-button decline" id="decline">Cancel</button>
+            <button class="modal-button accept" id="accept">OK</button>
           </div>
         </div>
       </div>
       <div class="container">
         <div class="task-list">
-
         </div>
       </div>
     </main>

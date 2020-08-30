@@ -1,12 +1,13 @@
-<h2>Manager To-Do</h2>
-<h3> JavaScript, HTML, CSS</h3>
+# Manager To-Do
+JavaScript, HTML, CSS(SCSS)
 
-<p>Prosty projekt aplikacji do zarządzania zadaniami</p>
-<p>Funkcje</p>
-<ul>
-  <li>Dodawanie i usuwanie tasków</li>
-  <li>Wersja mobilna</li>
-</ul>
+## Opis
+Prosty projekt aplikacji do zarządzania zadaniami
 
-<p>Live: </p>
+## Funkcje
+- Dodawanie i usuwanie tasków
+- Wersja mobilna
+- Pobieranie zadań z dummy servera (jsonplaceholder)
+
+## Live:
 https://adrian2422.github.io/to_do/
